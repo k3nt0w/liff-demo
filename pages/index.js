@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useEffect } from "react";
 import packageJson from "../package.json";
 
 export default function Home(props) {
@@ -11,6 +12,16 @@ export default function Home(props) {
   const { liff } = props;
   console.log(liff?.getVersion());
   console.log(liff?.getIDToken());
+
+  useEffect(() => {
+    if (!liff?.isInClient() && !liff?.getIDToken()) {
+      liff?.login()
+    }
+  }, [liff])
+
+  if (!liff?.getIDToken()) {
+    return <div>please login</div>
+  }
   return (
     <div>
       <Head>
