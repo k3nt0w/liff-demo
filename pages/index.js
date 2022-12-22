@@ -10,7 +10,7 @@ export default function Home(props) {
    **/
   console.log(props)
   const { liff, liffError } = props;
-  console.log(liff.getVersion());
+  console.log(liff?.getVersion());
   return (
     <div>
       <Head>
